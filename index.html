@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantilla Caso de Uso - UML</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background: #f0f2f5;
+            padding: 25px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .contenedor {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .campo {
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+            color: #34495e;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+        .botones {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-limpiar { background: #e74c3c; color: white; }
+        .btn-imprimir { background: #27ae60; color: white; }
+        button:hover { opacity: 0.9; }
+
+        /* Estilos para guardar como PDF */
+        @media print {
+            body { background: white; padding: 0; }
+            .botones { display: none; }
+            .contenedor { box-shadow: none; padding: 0; }
+            input, textarea { border: 1px solid black; background: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="contenedor">
+    <h1>PLANTILLA DE CASO DE USO - UML</h1>
+
+    <div class="campo">
+        <label>ID del Caso de Uso:</label>
+        <input type="text" id="id" placeholder="Ej: CU-001">
+    </div>
+
+    <div class="campo">
+        <label>Nombre del Caso de Uso:</label>
+        <input type="text" id="nombre" placeholder="Ej: Inscribir estudiante">
+    </div>
+
+    <div class="campo">
+        <label>Actor Principal:</label>
+        <input type="text" id="actorP" placeholder="Ej: Estudiante">
+    </div>
+
+    <div class="campo">
+        <label>Actores Secundarios:</label>
+        <input type="text" id="actorS" placeholder="Ej: Administrador, Sistema de Pagos">
+    </div>
+
+    <div class="campo">
+        <label>Relaciones / Restricciones:</label>
+        <input type="text" id="restricciones" placeholder="Ej: {O}, Incluye, Extiende">
+    </div>
+
+    <div class="campo">
+        <label>Descripción General:</label>
+        <textarea id="descripcion"></textarea>
+    </div>
+
+    <div class="campo">
+        <label>Precondiciones:</label>
+        <textarea id="precondiciones"></textarea>
+    </div>
+
+    <div class="campo">
+        <label>Flujo Principal (Éxito):</label>
+        <textarea id="flujo"></textarea>
+    </div>
+
+    <div class="campo">
+        <label>Flujos Alternativos / Errores:</label>
+        <textarea id="alternativos"></textarea>
+    </div>
+
+    <div class="campo">
+        <label>Postcondiciones:</label>
+        <textarea id="postcondiciones"></textarea>
+    </div>
+
+    <div class="botones">
+        <button class="btn-limpiar" onclick="limpiarFormulario()">LIMPIAR</button>
+        <button class="btn-imprimir" onclick="validarEImprimir()">GUARDAR COMO PDF</button>
+    </div>
+</div>
+
+<script>
+    // Lógica para limpiar todos los campos
+    function limpiarFormulario() {
+        document.querySelectorAll('input, textarea').forEach(campo => campo.value = '');
+    }
+
+    // Lógica para validar y guardar
+    function validarEImprimir() {
+        const id = document.getElementById('id').value.trim();
+        const nombre = document.getElementById('nombre').value.trim();
+
+        if (!id || !nombre) {
+            alert('⚠️ Debes llenar al menos el ID y el Nombre del Caso de Uso');
+            return;
+        }
+
+        window.print();
+    }
+</script>
+
+</body>
+</html>
